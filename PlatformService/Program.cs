@@ -6,6 +6,9 @@ builder.Services.AddControllers();
 // Add DbContext
 builder.Services.AddPlatformDbContext();
 
+// Add Providers
+builder.Services.AddProviders();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
