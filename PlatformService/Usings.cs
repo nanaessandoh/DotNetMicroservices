@@ -4,8 +4,13 @@ global using Microsoft.EntityFrameworkCore;
 global using PlatformService.Data.Interfaces;
 global using PlatformService.Data.Models;
 global using PlatformService.Providers;
-global using PlatformService.Interfaces;
 global using PlatformService.Extensions;
+global using MapsterMapper;
+global using Mapster;
+global using PlatformService.DTOs;
+global using System.ComponentModel.DataAnnotations;
+global using Microsoft.AspNetCore.Mvc;
+
 
 
 

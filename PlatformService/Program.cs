@@ -9,6 +9,9 @@ builder.Services.AddPlatformDbContext();
 // Add Providers
 builder.Services.AddProviders();
 
+// Add Mapster
+builder.Services.AddMapster();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -27,5 +30,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+await app.ApplyIPlatformDbContextMigrations();
 
 app.Run();
