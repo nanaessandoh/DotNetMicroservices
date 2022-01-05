@@ -14,17 +14,26 @@ public class PlatformDataProvider : IPlatformDataProvider
         return await _context.Platforms.ToListAsync();
     }
 
-    public async Task Add(Platform platform)
+    public async Task<Platform> Add(Platform platform)
     {
         _ = platform ?? throw new ArgumentNullException(nameof(platform));
         await _context.Platforms.AddAsync(platform);
         await _context.SaveChangesAsync();
+
+        return platform;
     }
 
     public async Task<Platform> Get(int id)
     {
-        return (await GetAll())
+        var platform =  (await GetAll())
             .FirstOrDefault(x => x.Id == id);
+
+        if (platform is null)
+        {
+            throw new NotFoundException($"Platform does not exist with Id = {id}.");
+        }
+
+        return platform;
     }
 
     public async Task Delete(int id)

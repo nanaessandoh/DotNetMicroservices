@@ -10,6 +10,7 @@ global using Mapster;
 global using PlatformService.DTOs;
 global using System.ComponentModel.DataAnnotations;
 global using Microsoft.AspNetCore.Mvc;
+global using PlatformService.Exceptions;
 
 
 

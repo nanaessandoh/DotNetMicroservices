@@ -27,7 +27,7 @@ public class PlatformsController : BaseApiController<PlatformsController>
         });
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "GetPlatform")]
     public async Task<IActionResult> GetPlatform(int id)
     {
         return await TryAsync(async () =>
@@ -39,22 +39,27 @@ public class PlatformsController : BaseApiController<PlatformsController>
         });
     }
 
-    // [HttpPost]
-    // public async Task<IActionResult> CreateActivity([FromBody] PlatformCreateModel platform)
-    // {
-    //     return await TryAsync(async () =>
-    //     {
-    //         return Ok(await Mediator.Send(new Create.Command {Activity = activity}));
-    //     });
-    // }
+    [HttpPost]
+    public async Task<IActionResult> CreatePlatform([FromBody] PlatformCreateModel platform)
+    {
+        return await TryAsync(async () =>
+        {
+            var newPlatform = _mapper.Map<Platform>(platform);
+            newPlatform = await _platformDataProvider.Add(newPlatform);
+            return CreatedAtRoute(
+                    nameof(GetPlatform),
+                    new { Id = newPlatform.Id},
+                    _mapper.Map<PlatformViewModel>(newPlatform)
+                );
+        });
+    }
 
     // [HttpPut("{id}")]
-    // public async Task<IActionResult> EditActivity(Guid id, [FromBody] Activity activity)
+    // public async Task<IActionResult> EditPlatform(int id, [FromBody] PlatformEditModel activity)
     // {
     //     return await TryAsync(async () =>
     //     {
-    //         activity.Id = id;
-    //         return Ok(await Mediator.Send(new Edit.Command {Activity = activity}));
+    //         return Ok();
     //     });
     // }
 
