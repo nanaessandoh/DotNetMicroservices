@@ -54,15 +54,6 @@ public class PlatformsController : BaseApiController<PlatformsController>
         });
     }
 
-    // [HttpPut("{id}")]
-    // public async Task<IActionResult> EditPlatform(int id, [FromBody] PlatformEditModel activity)
-    // {
-    //     return await TryAsync(async () =>
-    //     {
-    //         return Ok();
-    //     });
-    // }
-
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeletePlatform(int id)
     {
