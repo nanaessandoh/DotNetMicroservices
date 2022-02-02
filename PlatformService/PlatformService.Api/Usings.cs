@@ -11,7 +11,10 @@ global using PlatformService.DTOs;
 global using System.ComponentModel.DataAnnotations;
 global using Microsoft.AspNetCore.Mvc;
 global using PlatformService.Exceptions;
-
+global using PlatformService.Api.SyncDataServices.Interfaces;
+global using PlatformService.Api.SyncDataServices;
+global using System.Text;
+global using System.Text.Json;
 
 
 

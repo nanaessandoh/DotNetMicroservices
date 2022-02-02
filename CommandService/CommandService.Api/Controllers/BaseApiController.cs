@@ -1,7 +1,7 @@
-namespace PlatformService.Controllers;
+namespace CommandService.Api.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/c/[controller]")]
 public abstract class BaseApiController<TController> : ControllerBase
 where TController : BaseApiController<TController>
 {
@@ -38,3 +38,4 @@ where TController : BaseApiController<TController>
         }
     }
 }
+

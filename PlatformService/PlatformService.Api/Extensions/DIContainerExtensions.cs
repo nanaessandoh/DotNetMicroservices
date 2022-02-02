@@ -8,4 +8,11 @@ public static class DIContainerExtensions
 
         return services;
     }
+
+    public static IServiceCollection AddSyncDataService(this IServiceCollection services)
+    {
+        services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
+
+        return services;
+    }
 }
