@@ -6,7 +6,7 @@ public class PlatformsController : BaseApiController<PlatformsController>
         ILogger<PlatformsController> logger
     ): base(logger)
     {
-        
+
     }
 
     [HttpPost]

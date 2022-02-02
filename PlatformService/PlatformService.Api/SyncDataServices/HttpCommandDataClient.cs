@@ -24,7 +24,7 @@ public class HttpCommandDataClient : ICommandDataClient
 
             if (response.IsSuccessStatusCode)
             {
-                Console.WriteLine("--> Sync POST to CommandService was OK!");
+                Console.WriteLine("--> Sync POST to CommandService was NOT OK!");
             }
             else
             {
@@ -33,7 +33,7 @@ public class HttpCommandDataClient : ICommandDataClient
         }
         catch (Exception ex)
         {
-            throw ex;
+            Console.WriteLine($"--> Could not sent synchronously: {ex.Message}");
         }
     }
 }

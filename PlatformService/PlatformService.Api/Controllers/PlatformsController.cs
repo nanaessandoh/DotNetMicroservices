@@ -4,15 +4,18 @@ public class PlatformsController : BaseApiController<PlatformsController>
 {
     private readonly IPlatformDataProvider _platformDataProvider;
     private readonly IMapper _mapper;
+    private readonly ICommandDataClient _commandClient;
 
     public PlatformsController(
         ILogger<PlatformsController> logger,
         IPlatformDataProvider platformDataProvider,
-        IMapper mapper)
+        IMapper mapper,
+        ICommandDataClient commandClient)
     : base (logger)
     {
         _platformDataProvider = platformDataProvider;
         _mapper = mapper;
+        _commandClient = commandClient;
     }
 
     [HttpGet]
@@ -22,8 +25,6 @@ public class PlatformsController : BaseApiController<PlatformsController>
         {
             var plaforms = await _platformDataProvider.GetAll();
             return Ok(_mapper.Map<IEnumerable<PlatformViewModel>>(plaforms));
-            // OR
-            //return Ok(plaforms.Adapt<PlatformViewModel>());
         });
     }
 
@@ -34,8 +35,6 @@ public class PlatformsController : BaseApiController<PlatformsController>
         {
             var platform = await _platformDataProvider.Get(id);
             return Ok(_mapper.Map<PlatformViewModel>(platform));
-            // OR
-            //return Ok(platform.Adapt<PlatformViewModel>());
         });
     }
 
@@ -46,10 +45,13 @@ public class PlatformsController : BaseApiController<PlatformsController>
         {
             var newPlatform = _mapper.Map<Platform>(platform);
             newPlatform = await _platformDataProvider.Add(newPlatform);
+            var viewModel = _mapper.Map<PlatformViewModel>(newPlatform);
+            await _commandClient.SendPlatformToCommand(viewModel);
+
             return CreatedAtRoute(
                     nameof(GetPlatform),
                     new { Id = newPlatform.Id},
-                    _mapper.Map<PlatformViewModel>(newPlatform)
+                    viewModel
                 );
         });
     }
