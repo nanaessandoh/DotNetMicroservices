@@ -48,11 +48,7 @@ public class PlatformsController : BaseApiController<PlatformsController>
             var viewModel = _mapper.Map<PlatformViewModel>(newPlatform);
             await _commandClient.SendPlatformToCommand(viewModel);
 
-            return CreatedAtRoute(
-                    nameof(GetPlatform),
-                    new { Id = newPlatform.Id},
-                    viewModel
-                );
+            return CreatedAtRoute(nameof(GetPlatform), new {Id = newPlatform.Id}, viewModel);
         });
     }
 

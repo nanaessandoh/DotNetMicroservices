@@ -1,0 +1,19 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /app
+
+# copy csproj and restore as distinct layers
+COPY *.sln .
+COPY CommandService.Api/*.csproj ./CommandService.Api/
+COPY CommandService.Data/*.csproj ./CommandService.Data/
+RUN dotnet restore
+
+# copy everything else and build app
+COPY CommandService.Api/. ./CommandService.Api/
+COPY CommandService.Data/. ./CommandService.Data/
+WORKDIR /app/CommandService.Api
+RUN dotnet publish -c Release -o out
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/CommandService.Api/out ./
+ENTRYPOINT ["dotnet", "CommandService.dll"]

@@ -1,0 +1,26 @@
+- Build platform service image
+docker build -f PlatformService.Api/Dockerfile -t nanaessandoh/platformservice .
+
+- Push platform service image to docker hub
+docker push nanaessandoh/platformservice
+
+- Spin image in container dev environment
+docker run -p 8080:80 -d nanaessandoh/platformservice    (-d is optional)
+
+- Build command service image
+docker build -f CommandService.Api/Dockerfile -t nanaessandoh/commandservice .
+
+- Push command service image to docker hub
+docker push nanaessandoh/commandservice
+
+- Spin image in container dev environment
+docker run -p 8080:80 -d nanaessandoh/commandservice    (-d is optional)
+
+- See running containers
+docker ps
+
+- Start container
+docker start <container-id form docker ps>
+
+- stop container
+docker stop <container-id from docker ps>

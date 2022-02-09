@@ -10,11 +10,12 @@ public class PlatformsController : BaseApiController<PlatformsController>
     }
 
     [HttpPost]
-    public async Task<IActionResult> TestInboundConnection()
+    public IActionResult TestInboundConnection()
     {
-        return await TryAsync(async () =>
+        Console.WriteLine(" --> Inbound POST - CommandService");
+        return Try(() =>
         {
-            return Ok("Inbound test from Platforms Controller");
+            return Ok();
         });
     }
 
