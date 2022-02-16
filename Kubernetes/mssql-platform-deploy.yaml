@@ -14,19 +14,19 @@ spec:
     spec:
       containers:
         - name: mssql
-          image: mcr.microsoft.com/mssql/server:2017-latest
+          image: mcr.microsoft.com/mssql/server:2019-latest
           resources:
             limits:
-              memory: 512Mi
+              memory: 1Gi
               cpu: "1"
             requests:
-              memory: 256Mi
-              cpu: "0.2"
+              memory: 1Gi
+              cpu: "1"
           ports:
             - containerPort: 1433
           env:
           - name: MSSQL_PID
-            value: "Express"
+            value: "Developer"
           - name: ACCEPT_EULA
             value: "Y"
           - name: SA_PASSWORD
@@ -35,8 +35,8 @@ spec:
                 name: mssql
                 key: SA_PASSWORD
           volumeMounts:
-          - mountPath: /var/opt/mssql/data
-            name: mssqldb
+          - name: mssqldb
+            mountPath: /var/opt/mssql
       volumes:
       - name: mssqldb
         persistentVolumeClaim:
