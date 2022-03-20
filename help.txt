@@ -24,3 +24,11 @@ docker start <container-id form docker ps>
 
 - stop container
 docker stop <container-id from docker ps>
+
+
+- Deploying Postgresql server in kubernetes
+ - Download pg-admin
+ - Run kubectl get services (take not of external ip for the loadbalancer of postgresql server and port
+ - In pg-admin hostname is external ip (localhost in my case, user: postgres, password: password set in deployment .yaml file (myPassword in my instance)
+ - Safe way is to store password in kubernetes secrets.
+
