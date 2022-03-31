@@ -3,8 +3,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
+// Get Configuration
+var configuration = builder.Configuration;
+
 // Add DbContext
-builder.Services.AddPlatformDbContext();
+builder.Services.AddPlatformDbContext(configuration);
 
 // Add Dependencies
 builder.Services.AddMapster();

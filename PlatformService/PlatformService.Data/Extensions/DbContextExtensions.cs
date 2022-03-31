@@ -1,25 +1,15 @@
+using Microsoft.Extensions.Configuration;
+
 namespace PlatformService.Data.Extensions;
 
 public static class DbContextExtensions
 {
-    public static IServiceCollection AddPlatformDbContext(this IServiceCollection services)
+    public static IServiceCollection AddPlatformDbContext(this IServiceCollection services, bool isDevelopment, IConfiguration config)
     {
-        services.AddDbContext<IPlatformDbContext, PlatFormDbContext>(options =>
-            options.UseInMemoryDatabase("PlatformInMem"));
+        services.AddEntityFrameworkNpgsql()
+            .AddDbContext<IPlatformDbContext, PlatFormDbContext>(options =>
+            options.UseNpgsql(config.GetConnectionString("PlatformsConnection")), ServiceLifetime.Scoped);
 
         return services;
     }
-
-    public static async Task SeedPlatformDbContext(this IPlatformDbContext context)
-    {
-        if (context.Platforms.Any())
-        {
-            return;
-        }
-
-        var platforms = PlatformSeedData.GetPlatformSeedData();
-        await context.Platforms.AddRangeAsync(platforms);
-        await context.SaveChangesAsync();
-    }
-
 }

@@ -6,17 +6,18 @@ public static class MigrationExtensions
     {
         using var scope = app.Services.CreateAsyncScope();
         var services = scope.ServiceProvider;
+        var context = services.GetRequiredService<IPlatformDbContext>();
+        var logger = services.GetRequiredService<ILogger<Program>>();
 
         try
         {
-            var context = services.GetRequiredService<IPlatformDbContext>();
-            //await context.Database.MigrateAsync();
-            await DbContextExtensions.SeedPlatformDbContext(context);
+            logger.LogInformation("Attempting to run migrations.");
+            await context.Database.MigrateAsync();
         }
         catch (Exception ex)
         {
-            var logger = services.GetRequiredService<ILogger<Program>>();
             logger.LogError(ex, "An error ocurred during migration.");
         }
+
     }
 }
