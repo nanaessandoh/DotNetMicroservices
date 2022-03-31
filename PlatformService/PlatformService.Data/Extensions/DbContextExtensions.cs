@@ -4,7 +4,7 @@ namespace PlatformService.Data.Extensions;
 
 public static class DbContextExtensions
 {
-    public static IServiceCollection AddPlatformDbContext(this IServiceCollection services, bool isDevelopment, IConfiguration config)
+    public static IServiceCollection AddPlatformDbContext(this IServiceCollection services, IConfiguration config)
     {
         services.AddEntityFrameworkNpgsql()
             .AddDbContext<IPlatformDbContext, PlatFormDbContext>(options =>
