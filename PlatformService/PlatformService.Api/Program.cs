@@ -33,6 +33,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-await app.ApplyIPlatformDbContextMigrations();
+await app.ApplyPlatformDbContextMigrations();
 
 app.Run();

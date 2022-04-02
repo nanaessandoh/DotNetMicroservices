@@ -9,5 +9,4 @@ public class Platform : BaseModel<Platform>
     public string Publisher { get; set; }
     [Required]
     public string Cost { get; set; }
-
 }
