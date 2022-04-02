@@ -1,4 +1,4 @@
-namespace PlatformService.Exceptions;
+namespace CommandService.Api.Exceptions;
 
 [Serializable]
 public class BadRequestException: Exception

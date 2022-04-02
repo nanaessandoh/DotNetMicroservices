@@ -1,11 +1,11 @@
 namespace PlatformService.DTOs;
 
-public class PlatformCreateModel
+public struct PlatformCreateModel
 {
     [Required]
-    public string Name { get; set; }
+    public string Name { get; init; }
     [Required]
-    public string Publisher { get; set; }
+    public string Publisher { get; init; }
     [Required]
-    public string Cost { get; set; }
+    public string Cost { get; init; }
 }
