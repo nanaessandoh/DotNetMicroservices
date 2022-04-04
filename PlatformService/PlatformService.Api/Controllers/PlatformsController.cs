@@ -5,17 +5,20 @@ public class PlatformsController : BaseApiController<PlatformsController>
     private readonly IPlatformDataProvider _platformDataProvider;
     private readonly IMapper _mapper;
     private readonly ICommandDataClient _commandClient;
+    private readonly IMessageBusClient _messageBusClient;
 
     public PlatformsController(
         ILogger<PlatformsController> logger,
         IPlatformDataProvider platformDataProvider,
         IMapper mapper,
-        ICommandDataClient commandClient)
+        ICommandDataClient commandClient,
+        IMessageBusClient messageBusClient)
     : base (logger)
     {
         _platformDataProvider = platformDataProvider;
         _mapper = mapper;
         _commandClient = commandClient;
+        _messageBusClient = messageBusClient;
     }
 
     [HttpGet]
@@ -47,6 +50,8 @@ public class PlatformsController : BaseApiController<PlatformsController>
             newPlatform = await _platformDataProvider.Add(newPlatform);
             var viewModel = _mapper.Map<PlatformViewModel>(newPlatform);
             await _commandClient.SendPlatformToCommand(viewModel);
+            var platformToPublish = _mapper.Map<PlatformPublishModel>(viewModel);
+            _messageBusClient.PublishNewPlatform(platformToPublish);
 
             return CreatedAtRoute(nameof(GetPlatform), new {id = newPlatform.Id}, viewModel);
         });

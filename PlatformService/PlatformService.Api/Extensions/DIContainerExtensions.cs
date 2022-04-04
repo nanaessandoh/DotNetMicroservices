@@ -5,6 +5,7 @@ public static class DIContainerExtensions
     public static IServiceCollection AddProviders(this IServiceCollection services)
     {
         services.AddScoped<IPlatformDataProvider, PlatformDataProvider>();
+        services.AddSingleton<IMessageBusClient, MessageBusClient>();
 
         return services;
     }

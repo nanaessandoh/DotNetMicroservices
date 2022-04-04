@@ -18,6 +18,8 @@ public static class MapsterExtensions
         // Source --> Target
         config.NewConfig<Platform, PlatformViewModel>();
         config.NewConfig<PlatformCreateModel, Platform>();
+        config.NewConfig<PlatformViewModel, PlatformPublishModel>()
+            .Map(dest => dest.Event, src => "Platform_Published");
 
         config.Compile();
 

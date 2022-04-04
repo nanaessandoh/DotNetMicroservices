@@ -31,7 +31,7 @@ public class PlatformsController : BaseApiController<PlatformsController>
     [HttpPost]
     public IActionResult TestInboundConnection()
     {
-        Console.WriteLine(" --> Inbound POST - CommandService");
+        _logger.LogInformation(" --> Inbound POST - CommandService");
         return Try(() =>
         {
             return Ok();
