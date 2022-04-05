@@ -10,5 +10,11 @@ global using CommandService.Api.Interfaces;
 global using CommandService.Api.Providers;
 global using System.ComponentModel.DataAnnotations;
 global using CommandService.Api.DTOs;
+global using CommandService.Api.EventProcessing.Interfaces;
+global using CommandService.Api.EventProcessing;
+global using RabbitMQ.Client;
+global using RabbitMQ.Client.Events;
+global using CommandService.Api.AsyncDataServices;
+global using System.Text;
 
 

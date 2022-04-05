@@ -6,7 +6,7 @@ public static class MapsterExtensions
     public static IServiceCollection AddMapster(this IServiceCollection services)
     {
         services.AddSingleton(GetMapsterConfig());
-        services.AddScoped<IMapper, ServiceMapper>();
+        services.AddSingleton<IMapper, ServiceMapper>();
 
         return services;
     }

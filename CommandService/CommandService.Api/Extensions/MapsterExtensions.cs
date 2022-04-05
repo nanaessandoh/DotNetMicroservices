@@ -1,5 +1,3 @@
-using CommandService.Api.DTOs;
-
 namespace CommandService.Api.Extensions;
 
 public static class MapsterExtensions
@@ -7,7 +5,7 @@ public static class MapsterExtensions
     public static IServiceCollection AddMapster(this IServiceCollection services)
     {
         services.AddSingleton(GetMapsterConfig());
-        services.AddScoped<IMapper, ServiceMapper>();
+        services.AddSingleton<IMapper, ServiceMapper>();
 
         return services;
     }
@@ -20,6 +18,9 @@ public static class MapsterExtensions
         config.NewConfig<Platform, PlatformViewModel>();
         config.NewConfig<Command, CommandViewModel>();
         config.NewConfig<CommandCreateModel, Command>();
+        config.NewConfig<PlatformPublishModel, Platform>()
+            .Ignore(dest => dest.Id)
+            .Map(dest => dest.ExternalId, src => src.Id);
 
         config.Compile();
 

@@ -18,6 +18,7 @@ global using System.Text.Json;
 global using PlatformService.Api.AsyncDataServices.Interfaces;
 global using RabbitMQ.Client;
 global using PlatformService.Api.AsyncDataServices;
+global using PlatformService.Data;
 
 
 

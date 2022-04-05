@@ -1,4 +1,4 @@
-- Build platform service image
+- Build platform service image (in root of project)
 docker build -f PlatformService.Api/Dockerfile -t nanaessandoh/platformservice .
 
 - Push platform service image to docker hub

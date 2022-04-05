@@ -12,6 +12,7 @@ builder.Services.AddCommandsDbContext(configuration);
 // Add Dependencies
 builder.Services.AddMapster();
 builder.Services.AddProviders();
+builder.Services.AddHostedServices();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

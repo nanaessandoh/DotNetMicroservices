@@ -14,7 +14,7 @@ public class MessageBusClient : IMessageBusClient, IDisposable
     {
         _config = config;
         _logger = logger;
-        ConfigureRabbitMQ();
+        InitializeRabbitMQ();
     }
 
     public void PublishNewPlatform(PlatformPublishModel publishedPlatform)
@@ -51,7 +51,7 @@ public class MessageBusClient : IMessageBusClient, IDisposable
         _logger.LogInformation($"---> Message Sent. Message: {message}");
     }
 
-    private void ConfigureRabbitMQ()
+    private void InitializeRabbitMQ()
     {
         var factory = new ConnectionFactory()
         {
@@ -65,7 +65,7 @@ public class MessageBusClient : IMessageBusClient, IDisposable
             _channel = _connection.CreateModel();
             _channel.ExchangeDeclare(exchange: exchangeName, type: ExchangeType.Fanout);
             _connection.ConnectionShutdown += RabbitMQ_ConnectionShutdown;
-            _logger.LogInformation("Connected to Message Bus.");
+            _logger.LogInformation("---> Initialized Message Bus.");
 
         }
         catch(Exception ex)
