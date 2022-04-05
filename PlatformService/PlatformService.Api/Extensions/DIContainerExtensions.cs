@@ -6,6 +6,7 @@ public static class DIContainerExtensions
     {
         services.AddScoped<IPlatformDataProvider, PlatformDataProvider>();
         services.AddSingleton<IMessageBusClient, MessageBusClient>();
+        services.AddGrpc();
 
         return services;
     }

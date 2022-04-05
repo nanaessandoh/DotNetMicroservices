@@ -20,7 +20,10 @@ public static class MapsterExtensions
         config.NewConfig<PlatformCreateModel, Platform>();
         config.NewConfig<PlatformViewModel, PlatformPublishModel>()
             .Map(dest => dest.Event, src => "Platform_Published");
-
+        config.NewConfig<Platform, GrpcPlatformModel>()
+            .Map(dest => dest.PlaformId, src => src.Id)
+            .Map(dest => dest.Name, src => src.Name)
+            .Map(dest => dest.Publisher, src => src.Publisher);
         config.Compile();
 
         return config;

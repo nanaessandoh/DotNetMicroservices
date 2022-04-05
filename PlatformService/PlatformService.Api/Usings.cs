@@ -19,6 +19,7 @@ global using PlatformService.Api.AsyncDataServices.Interfaces;
 global using RabbitMQ.Client;
 global using PlatformService.Api.AsyncDataServices;
 global using PlatformService.Data;
+global using Grpc.Core;
 
 
 

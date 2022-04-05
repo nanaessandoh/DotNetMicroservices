@@ -33,6 +33,9 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Register gRPC endpoint
+app.MapGrpcService<GrpcPlatformService>();
+
 await app.ApplyPlatformDbContextMigrations();
 
 app.Run();
