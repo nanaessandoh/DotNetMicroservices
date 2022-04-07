@@ -6,6 +6,7 @@ public static class DIContainerExtensions
     {
         services.AddScoped<ICommandDataProvider, CommandDataProvider>();
         services.AddSingleton<IEventProcessor, EventProcessor>();
+        services.AddScoped<IPlatformDataClient, PlatformDataClient>();
 
         return services;
     }

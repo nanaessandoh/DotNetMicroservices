@@ -2,10 +2,10 @@ namespace PlatformService.Api.SyncDataServices;
 
 public class GrpcPlatformService : GrpcPlatform.GrpcPlatformBase
 {
-    private readonly PlatformDataProvider _platformDataProvider;
+    private readonly IPlatformDataProvider _platformDataProvider;
     private readonly IMapper _mapper;
 
-    public GrpcPlatformService(PlatformDataProvider platformDataProvider, IMapper mapper)
+    public GrpcPlatformService(IPlatformDataProvider platformDataProvider, IMapper mapper)
     {
         _platformDataProvider = platformDataProvider;
         _mapper = mapper;

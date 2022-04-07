@@ -34,5 +34,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 await app.ApplyCommandDbContextMigrations();
+await app.MigratePlatformsFromPlatformService();
 
 app.Run();

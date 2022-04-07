@@ -1,3 +1,5 @@
+using CommandService.Data;
+
 namespace CommandService.Api.Extensions;
 
 public static class MapsterExtensions
@@ -21,6 +23,11 @@ public static class MapsterExtensions
         config.NewConfig<PlatformPublishModel, Platform>()
             .Ignore(dest => dest.Id)
             .Map(dest => dest.ExternalId, src => src.Id);
+        config.NewConfig<GrpcPlatformModel, Platform>()
+            .Ignore(dest => dest.Id)
+            .Ignore(dest => dest.Commands)
+            .Map(dest => dest.ExternalId, src => src.PlaformId)
+            .Map(dest => dest.Name, src => src.Name);
 
         config.Compile();
 

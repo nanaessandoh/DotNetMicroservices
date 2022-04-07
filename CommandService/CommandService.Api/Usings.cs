@@ -16,5 +16,8 @@ global using RabbitMQ.Client;
 global using RabbitMQ.Client.Events;
 global using CommandService.Api.AsyncDataServices;
 global using System.Text;
-
-
+global using CommandService.Api.SyncDataServices.Interfaces;
+global using CommandService.Api.SyncDataServices;
+global using CommandService.Data;
+global using Grpc.Net.Client;
+global using CommandService.Api.Utilities;
